@@ -104,7 +104,7 @@ São palavras que são usadas com um propósito específico na linguagem Jarvas 
 | `elif`       | `return`      |
 | `else`       | `break`       |
 | `while`      | `fun`         |
-| `for`        ||
+| `for`        |               |
 
 ## **Constantes**
 Uma constante é um valor fixo. Na linguagem Jarvas as constantes são:
@@ -325,4 +325,3 @@ The GNU C Reference Manual. https://www.gnu.org/software/gnu-c-manual/gnu-c-manu
 
 KERNIGHAN, Brian W.; Ritchie, Dennis M (1978). The C Programming Language (em inglês). Upper Saddle River, New Jersey: Prentice hall. 228 páginas
 
-/////////////////////////////////////////////////////////////////

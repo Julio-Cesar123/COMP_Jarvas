@@ -21,6 +21,40 @@ Para uma melhor compreensão da nossa linguagem Jarvas, decidimos iniciar com um
 
 Acreditamos que começar com esses tópicos é fundamental para que seja possível compreender a lógica por trás da nossa linguagem e, assim, utilizá-la de forma mais eficiente.
 
+## Gramática da Linguagem 
+*prog* -> *instrução*
+
+*exibir* -> print (*ident*, *tipo*)
+
+*dec* -> *tipo* *ident* | *tipo* *ident* = *expressão*
+
+*expAritmetica* -> *termLogico* | *termLogico* *opAritmetica* *expAritmetica*
+
+*termLogico* -> *ident* | *integer* | (*expAritmetica*)
+
+*expLogica* -> *termLogico* | != *termLogico* | *termLogico* *opLogico* *expLogica*
+
+*expressão* -> *expAritmetica* | *expLogica* | *integer* | *float* | *identifier*
+
+*decIf*-> if (*expressão*) {*instrução*}
+
+*decWhile* -> while (*expressão*) {*instrução*}
+
+*instrução* -> *dec* | *expressão* | *estadoIf* | *estadoWhile* | ε
+
+*opAritmetica* -> + | - | * | /
+
+*opLogico* -> == | != | > | < | <= | >= 
+
+*tipo* -> int | float | char | bool 
+
+*integer* -> [0-9]+
+
+*float* -> [0-9]+.[0-9]+
+
+*ident* -> [A-Za-z_]+
+
+
 ## **Hello World**
 A melhor forma de apresentar a funcionalidade do código jarvas é mostrar a sintaxe através da escrita de algoritmos. Por conta disso, um exemplo introdutório clássico de qualquer linguagem de programação é imprimir "Hello World. Na linguagem de programação Jarvas, a forma mais simples para imprimir "Hello World" é:
 
@@ -39,7 +73,7 @@ int b = 2;
 
 int c = a + b;
 
-print(c);
+print(c, int);
 ```
 A saída desse código será:
 
@@ -61,27 +95,25 @@ O manual de referência da linguagem foi inspirado no ***The GNU C Reference Man
 ## **Convenções Léxicas**
 Na programação de computadores, as convenções lexicais são as regras que definem como os caracteres são agrupados em tokens em uma linguagem de programação. Tokens são os blocos básicos de construção de um programa e são usados para representar palavras-chave, variáveis, constantes, operadores e outros elementos da linguagem. Na imagem abaixo, é possível ver as convenções léxicas da linguagem de programação Jarvas.
 
-![Figura2: Convenções Lexicas](https://raw.githubusercontent.com/Julio-Cesar123/COMP_Jarvas/screenshots/Convencoeslexicas.jpg)
+![Figura2: Convenções Lexicas](https://raw.githubusercontent.com/Julio-Cesar123/COMP_Jarvas/screenshots/Convencoeslexicas(2).jpg)
 
 ## **Tokens**
 Tokens são valores de identificação atribuídos a lexemas. Na linguagem Jarvas, existem sete tipos diferentes de classes de tokens: palavras chave, delimitadores, identificadores e literais, atribuição, operadores, condicionais, e de final do arquivo. Espaços em branco são desconsiderados pelo compilador.
 
 Abaixo estão listados todos os tokens da linguagem Jarvas:
 
-| | | | | | |
+|                |              |              |              |              |              |
 |----------------|--------------|--------------|--------------|--------------|--------------|
 | IF             | ELIF         | ELSE         | WHILE        | FOR          | DO           |
 | RETURN         | BREAK        |              |              |              |              |
 | PAREN_L        | PAREN_R      | BRACE_L      | BRACE_R      | BRACKET_L    | BRACKET_R    |
 | SEMICOLON      | COMMA        | DOT          | DOUBLE_DOT   |              |              |
-| IDENTIFIER     | INTEGER      | FLOAT        | STRING       | CHAR         | BOOLEAN      |
+| TYPE           | INTEGER      | FLOAT        | BOOLEAN      | CHAR         |              |
 | EQUAL          |              |              |              |              |              |
 | PLUS           | MINUS        | TIMES        | DIVIDE       |              |              |
 | EQUALS         | NOT_EQUAL    | GREATER_THAN | LESS_THAN    | GREATER_EQUAL| LESS_EQUAL   |
 | EOF            |              |              |              |              |              |
 
-## **Comentários**
-?
 
 ## **Regex:**
 Expressões regulares (regex) são uma ferramenta extremamente poderosa e versátil para pesquisar, extrair e manipular texto de maneira eficiente. Elas oferecem uma ampla gama de recursos e funcionalidades que permitem realizar tarefas complexas de processamento de texto com facilidade.
@@ -98,7 +130,7 @@ Um identificador é uma sequência de símbolos validos usados para identificar 
 ## **Palavras chave**
 São palavras que são usadas com um propósito específico na linguagem Jarvas e que não podem ser usadas em outro lugar.
 
-| | |
+|              |               |
 |--------------|---------------|
 | `if`         | `do`          |
 | `elif`       | `return`      |
@@ -106,26 +138,22 @@ São palavras que são usadas com um propósito específico na linguagem Jarvas 
 | `while`      | `fun`         |
 | `for`        |               |
 
-## **Constantes**
-Uma constante é um valor fixo. Na linguagem Jarvas as constantes são:
+## **Tipos**
+Um tipo é um valor fixo. Na linguagem Jarvas os tipos são:
 
-constant
+type
 : INTEGER
 | FLOAT
-| STRING
 | CHAR
 | BOOLEAN
 
-Uma constante de inteiro é formada por um ou mais dígitos podendos ser precedida ou não por um sinal de menos ou mais.
+Um tipo inteiro é formado por um ou mais dígitos podendo ser precedido ou não por um sinal de menos ou mais.
 Exemplo: +1, -1, 129
 
-Uma constante de float é formada por um ou mais dígitos, com um ponto marcando o início do número em decimal formado por um ou mais dígitos. Podendo ser precedida ou não por um sinal de menos ou mais.
+Um tipo float é formada por um ou mais dígitos, com um ponto marcando o início do número em decimal formado por um ou mais dígitos. Podendo ser precedida ou não por um sinal de menos ou mais.
 Exemplo: +1.3, -1.0, 129.333
 
-Uma string é formada por uma sequência de caracteres delimitada por aspas duplas.
-Exemplo: "Hello, world"
-
-Um caractere é formado por um único caractere entre apóstrofos simples.
+Um tipo caractere é formado por um único caractere entre apóstrofos simples.
 Exemplo: 'O'
 
 Um boolean é formado ou pelo símbolo ***true*** ou pelo símbolo ***false***
@@ -184,17 +212,12 @@ charExpression
 | '('charExpression')' 
 | CHAR
 
-## **Expressão de string**
-
-stringExpression
-| '('stringExpression')' 
-| STRING
 
 ## **Expressões**
 Uma expressão é uma combinação de valores, variáveis, operadores e funções que são avaliados para produzir um resultado. 
 
 expression
-: constant
+: type
 | integerExpression
 | floatExpression
 | charExpression
@@ -221,15 +244,6 @@ Statements condicionais, também conhecidos como estruturas de controle condicio
 
 ifStatement
 : IF '('condition')' '{' block '}'
-
-ifElseStatement
-: ifStatement ELSE '{' block '}'
-
-ifElifStatement
-: ifStatement ELIF '('condition')' '{' block '}'
-
-ifElifElseStatement
-: ifElifStatement ELSE '{' block '}'
 
 # **Plano do projeto**
 ! (FAZER UM CRONOGRAMA DO GRUPO)
